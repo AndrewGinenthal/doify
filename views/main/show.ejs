@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title> <%= channel.name %> </title>
+</head>
+<body>
+
+<a href="/channels">Back to Doify</a>
+
+<h1><%= channel.name %></h1>
+<h3><%= channel.description %></h3>
+
+<h3>Today's Posts</h3>
+
+<% for (var i = 0; i < channel.tasks.length; i++){ %>
+	<a href="<%=channel.tasks[i].name%>/"> <li><%= channel.tasks[i].name %> </li> </a>
+	<% } %>
+
+	<br><br>
+
+<h3>Post a new task</h3>
+
+
+<form action ='/channels/<%= channel.name %>/newpost' method = 'POST'>
+		<input type = 'text' name = 'name' placeholder ='Your Task Name'><br><br>
+		<textarea rows = '4' cols ='50' name = 'description'>Task Description</textarea>
+		<input type="hidden" name="posted_in" value="<%= channel.name %>">
+		<input type = 'submit'>
+	</form>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title> <%= user.name%>'s Doify</title>
+</head>
+<body>
+
+<a href="/channels">Back to Doify</a>
+
+<h1><%= user.name %>'s Tasks</h1>
+<br>
+<h3>On Deck</h3>
+
+	<% for (var i = 0; i < user.tasks.length; i++){ %>
+	<a href="/channels/<%= user.tasks[i].posted_in %>/<%= user.tasks[i].name%>"><%= user.tasks[i].name %></a>
+	<li> Title: <%= user.tasks[i].name %> </li>
+
+	<li> Description: <%= user.tasks[i].description %> </li>
+	<% } %>
+
+	<form action ='/me/logout' method = 'POST'>
+	
+		<input type = 'submit' value = "logout">
+	</form>
+
+</body>
+</html>

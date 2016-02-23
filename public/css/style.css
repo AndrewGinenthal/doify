@@ -1,0 +1,50 @@
+*{
+	font-family: verdana;
+	
+}
+
+h1{
+	display: inline-block;
+
+}
+
+img{
+	display: inline-block;
+
+}
+
+#header{
+	background-color: #BDEDFC;
+	color: grey;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	padding: 0px;
+}
+
+
+
+#side_inputs{
+	background-color: #BDEDFC;
+	float: right;
+	border-left: 1px solid black;
+}
+
+#create_chan{
+
+	background-color: papayawhip;
+	margin: 0 auto;
+	width: 90%;
+	border-radius: 1em;
+	padding: 1em;
+	display: block;
+
+}
+
+#login{
+	display: block;
+	background-color: #FA7F7F;
+	margin: 0 auto;
+	width: 90%;
+	border-radius: 1em;
+	padding: 1em;
+}
