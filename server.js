@@ -65,7 +65,7 @@ mongoose.connection.once('open', function(){
   console.log('mongoose connection made')
   
   
-  app.listen(3000, function(){
+  app.listen(port, function(){
   	console.log('====================')
     console.log('listening');
     console.log('====================')
