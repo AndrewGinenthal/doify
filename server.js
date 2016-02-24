@@ -29,7 +29,7 @@ app.use(methodOverride(function(req, res){
 }));
 
 // PASSPORT STUFF
-app.use(expressSession({ name: 'whut', secret: 'conventional wisdom' }))
+app.use(expressSession({ name: 'whut', secret: 'conventional wisdom', saveUninitialized: true, resave: true, proxy: true }))
 app.use(passport.initialize());
 app.use(passport.session());
 
