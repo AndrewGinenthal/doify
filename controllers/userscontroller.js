@@ -19,7 +19,7 @@ router.post('/signup', passport.authenticate('local-signup', {
 })
 
 //LOGOUT
-router.post('/logout', function(req, res){
+router.get('/logout', function(req, res){
 	console.log(req.locals)
 	console.log('hitting the LOGOUT route')
 	console.log(req.body)
@@ -57,18 +57,42 @@ function isLoggedIn(req, res, next) {
 }
 
 
+
+
 //PERSONAL USER PAGE
 router.get('/:username', isLoggedIn, function(req, res){
-	console.log("hitting this on login verification")
 	
-	// console.log(res.locals)
-	
-	res.locals.name = req.params.username
+	// res.locals.name = req.params.username
+
 	req.params.username == req.user.name ? res.locals.usertrue = true : res.locals.usertrue = false;
+
 	User.findOne({'name' : req.params.username}, function(err, user){
-		console.log("===HITTING USER SHOW ROUTE===")
-		res.render('user/usershow.ejs', { user: user})
+		User.findById(req.user, function(err, current){
+			res.render('user/usershow.ejs', { user: user, current})	
+		})
+		
 	})
+})
+
+
+
+// DELETE USER
+router.delete('/:username', isLoggedIn, function(req, res){
+	req.params.username == req.user.name ? res.locals.usertrue = true : res.locals.usertrue = false;
+	User.findById(req.user, function(err, user){
+		user.remove(function(err){
+			res.redirect('/channels')
+		})
+	})
+})
+
+// DELETE POST FROM USER SHOW
+router.delete('/:username/delete_post', isLoggedIn, function(req, res){
+	req.params.username == req.user.name ? res.locals.usertrue = true : res.locals.usertrue = false;
+	User.findOne(req.user, function(err, user){
+		console.log("here are the current tasks:    " + user.tasks)
+		
+	})			
 })
 
 

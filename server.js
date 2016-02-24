@@ -51,7 +51,7 @@ app.use('/me', usersController)
 
 
 
-
+console.local
 app.get('/', function(req, res){
 	res.redirect('/channels')
 })

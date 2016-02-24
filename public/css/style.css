@@ -5,12 +5,18 @@
 
 h1{
 	display: inline-block;
+	vertical-align: middle;
 
 }
 
 img{
 	display: inline-block;
+	vertical-align: middle;
 
+}
+
+#my_home{
+	float: right;
 }
 
 #header{

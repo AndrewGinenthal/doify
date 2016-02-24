@@ -1,26 +1,65 @@
 <html>
 <head>
 	<title> <%= user.name%>'s Doify</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
 <body>
 
-<a href="/channels">Back to Doify</a>
+<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
+
+
+
+	<!-- I want this link to always go to the LOGGED IN USER's show -->
+	<a id = "my_home" href="/me/<%=  current.name   %>"><%= current.name %>'s Doify</a>
+	
+
+	</div>
+	<div id = "side_inputs">
+		<% if (!login) { %>
+	<div id = "login"><p>MEMBER LOGIN</p>
+	<form action ='/me/login' method = 'POST'>
+		<input type = 'text' name = 'email' placeholder ='email'><br><br>
+		<input type = 'text' name = 'password' placeholder ='password'><br><br>
+		<input type = 'submit'>
+	</form>
+	</div>
+		<% } %>
+	<div id = "create_chan"><p>Make a new Doify Channel</p>
+	<form action ='/channels' method = 'POST'>
+		<input type = 'text' name = 'name' placeholder ='new channel name'><br><br>
+		<textarea rows = '4' cols ='50' name = 'description'>what should this channel be about?</textarea> <br><br>
+		<input type = 'submit'>
+	</form>
+	</div>
+	</div>
+<a href="/channels">Back to Doify</a> <br>
 
 <h1><%= user.name %>'s Tasks</h1>
 <br>
 <h3>On Deck</h3>
 
 	<% for (var i = 0; i < user.tasks.length; i++){ %>
-	<a href="/channels/<%= user.tasks[i].posted_in %>/<%= user.tasks[i].name%>"><%= user.tasks[i].name %></a>
+	<a href="/channels/<%= user.tasks[i].posted_in %>/<%= user.tasks[i]._id%>"><%= user.tasks[i].name %></a>
 	<li> Title: <%= user.tasks[i].name %> </li>
 
 	<li> Description: <%= user.tasks[i].description %> </li>
+
+	<form action="/me/<%= user.name%>/delete_post" method="POST">
+		<input type="hidden" name="_method" value="DELETE">
+		<button id="delete-button">Done!</button>
+	</form>
+
 	<% } %>
 
-	<form action ='/me/logout' method = 'POST'>
 	
-		<input type = 'submit' value = "logout">
+	<% if (usertrue) { %>
+	<a href="/me/logout"><p>Logout</p></a>
+	<form action="/me/<%= user.name %>" method="POST">
+		<input type="hidden" name="_method" value="DELETE">
+		<button id="delete-button">Delete My Account!</button>
 	</form>
+	<% } %>
 
 </body>
 </html>

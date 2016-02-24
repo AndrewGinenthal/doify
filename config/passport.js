@@ -7,8 +7,8 @@ module.exports = function(passport){
 
 	// used to serialize the user for the session
 	passport.serializeUser(function(user, done) {
-		console.log("====***** SERIALIZING *****====")
-		console.log("this is the *user* object:  " + user)
+		// console.log("====***** SERIALIZING *****====")
+		// console.log("this is the *user* object:  " + user)
     	done(null, user.id);
 	});
 
@@ -16,9 +16,9 @@ module.exports = function(passport){
 	// used to deserialize the user
 	passport.deserializeUser(function(id, done) {
     	User.findById(id, function(err, user) {
-    		console.log("===deserializ-ing===")
+    		// console.log("===deserializ-ing===")
         	done(err, user);
-        	console.log("this happens in deserializer:    " + user)
+        	// console.log("this happens in deserializer:    " + user)
     	});
 	});
 
@@ -67,8 +67,8 @@ module.exports = function(passport){
 		passReqToCallback: true
 	}, function(req, email, password, done) {
 		
-		console.log("this is the req.body.email:    " + req.body.email)
-		console.log("this is the req.body.password:    " + req.body.password)
+		// console.log("this is the req.body.email:    " + req.body.email)
+		// console.log("this is the req.body.password:    " + req.body.password)
 		User.findOne({ 'email': email }, function(err, user) {
 			console.log("FOUND THE USER" + user)
 			if (err) { return done(err) }

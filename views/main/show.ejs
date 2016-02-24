@@ -1,8 +1,17 @@
 <html>
 <head>
 	<title> <%= channel.name %> </title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
 <body>
+
+	<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
+	<% if (login) { %>
+	<a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
+	<% } %>
+
+	</div>
 
 <a href="/channels">Back to Doify</a>
 
@@ -12,7 +21,7 @@
 <h3>Today's Posts</h3>
 
 <% for (var i = 0; i < channel.tasks.length; i++){ %>
-	<a href="<%=channel.tasks[i].name%>/"> <li><%= channel.tasks[i].name %> </li> </a>
+	<a href="/channels/<%= channel.name%>/<%=  channel.tasks[i]._id  %>/"> <li><%= channel.tasks[i].name %> </li> </a>
 	<% } %>
 
 	<br><br>
@@ -23,6 +32,7 @@
 <form action ='/channels/<%= channel.name %>/newpost' method = 'POST'>
 		<input type = 'text' name = 'name' placeholder ='Your Task Name'><br><br>
 		<textarea rows = '4' cols ='50' name = 'description'>Task Description</textarea>
+		<% if (login) { %> <input type="hidden" name="posted_by" value="<%= user.name %>"> <%}%>
 		<input type="hidden" name="posted_in" value="<%= channel.name %>">
 		<input type = 'submit'>
 	</form>

@@ -4,15 +4,18 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	<% if (login) { %>
-<a href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
-		<% } %>
+
 	
-	<div id = "header"><img src="/images/ant.png" height="70" width ="70"><h1>Doify: You are not currently on reddit.</h1></div>
+	<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
+	<% if (login) { %>
+	<a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
+	<% } %>
+
+	</div>
 
 	<div id = "side_inputs">
 		<% if (!login) { %>
-		<div id = "login"><p>MEMBER LOGIN</p>
+	<div id = "login"><p>MEMBER LOGIN</p>
 	<form action ='/me/login' method = 'POST'>
 		<input type = 'text' name = 'email' placeholder ='email'><br><br>
 		<input type = 'text' name = 'password' placeholder ='password'><br><br>
@@ -33,7 +36,7 @@
 	<a href="channels/<%=channel[i].name%>/"> <li><%= channel[i].name %> </li> </a>
 	<% } %>
 
-	<% if (!login) { %> <a href="me/signup"><h3>Become a member and start doify'ing today!</h3></a> <% } %>
+	<% if (!login) { %> <a href="/me/signup"><h3>Become a member and start doify'ing today!</h3></a> <% } %>
 
 </body>
 </html>

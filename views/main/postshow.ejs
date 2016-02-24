@@ -1,17 +1,50 @@
 <html>
 <head>
 	<title><%= task.name %> </title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
 <body>
+
+	<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
+	<% if (login) { %> <a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a> <% } %>
+	</div>
+
 	<a href="/channels/<%= channel.name %>">Back to main <%= channel.name %> channel</a>
+		<div id = "side_inputs">
+		<% if (!login) { %>
+	<div id = "login"><p>MEMBER LOGIN</p>
+	<form action ='/me/login' method = 'POST'>
+		<input type = 'text' name = 'email' placeholder ='email'><br><br>
+		<input type = 'text' name = 'password' placeholder ='password'><br><br>
+		<input type = 'submit'>
+	</form>
+	</div>
+		<% } %>
+	<div id = "create_chan"><p>Make a new Doify Channel</p>
+	<form action ='/channels' method = 'POST'>
+		<input type = 'text' name = 'name' placeholder ='new channel name'><br><br>
+		<textarea rows = '4' cols ='50' name = 'description'>what should this channel be about?</textarea> <br><br>
+		<input type = 'submit'>
+	</form>
+	</div>
+	</div>
 
 	<H1><%= task.name %> </H1><br>
-
+	<p>Posted by: <a href="/me/<%= task.posted_by %>"><%= task.posted_by %></a></p>
+	<!-- <p>Posted by: <% if (login) { %> <a href="/me/<%= user.name %>"><%= user.name %></a> <% } %></p> -->
 	<p>Created on: <%= task.created %> </p> <br>
 	<!-- <p>Due by: <%= task.due %> </p><br>
 	<p>Task Location: <%= task.location %> </p> <br><br> -->
 
 	<p> <%= task.description %> </p>
+
+	<a href="/channels/<%= channel.name%>/<%= task._id %>/edit">Edit Task Details</a>
+
+	<form action="/channels/<%= channel.name%>/<%= task.name %>" method="POST">
+		<input type="hidden" name="_method" value="DELETE">
+		<button id="delete-button">Delete Task</button>
+	</form>
 
 
 

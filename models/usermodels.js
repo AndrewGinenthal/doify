@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
-
 var tasksSchema = require('./taskmodels.js').schema
 
 
