@@ -58,7 +58,8 @@ app.get('/', function(req, res){
 
 
 // CONNECTION
-mongoose.connect('mongodb://localhost:27017/doify')
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/doify'
+mongoose.connect(mongoUri)
 
 mongoose.connection.once('open', function(){
   console.log('mongoose connection made')
