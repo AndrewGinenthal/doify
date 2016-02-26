@@ -3,6 +3,16 @@
 	
 }
 
+body{
+	margin: 0;
+}
+
+#main_view{
+	margin: 1%;
+	background-color: #D9D9D9;
+	height: 100%;
+}
+
 h1{
 	display: inline-block;
 	vertical-align: middle;
@@ -12,6 +22,36 @@ h1{
 img{
 	display: inline-block;
 	vertical-align: middle;
+
+}
+
+
+#description{
+	list-style: none;
+}
+
+#comments{
+	color: red;
+	border: 1px solid black;
+
+}
+
+#reply_here{
+	list-style: none;
+}
+
+#reply_button{
+	list-style: none;
+}
+
+#commenter_says{
+	font-size: small;
+	list-style: none;
+}
+
+#comment_body{
+	list-style: none;
+
 
 }
 
@@ -33,6 +73,7 @@ img{
 	background-color: #BDEDFC;
 	float: right;
 	border-left: 1px solid black;
+	height: 100%;
 }
 
 #create_chan{

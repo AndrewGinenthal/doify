@@ -10,7 +10,6 @@ router.get('/', function(req, res){
 	
 		res.render('main/show.ejs')
 		
-	
 })
 
 module.exports = router

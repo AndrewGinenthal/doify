@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
+<div id = "header"><a href="/channels"><img src="/images/ant.png" height="100" width ="100"></a><h1>Doify: You are not currently on reddit.</h1>
 
 
 
@@ -33,8 +33,8 @@
 	</form>
 	</div>
 	</div>
-<a href="/channels">Back to Doify</a> <br>
-
+ <br>
+<div id = "main_view">
 <h1><%= user.name %>'s Tasks</h1>
 <br>
 <h3>On Deck</h3>
@@ -44,11 +44,14 @@
 	<li> Title: <%= user.tasks[i].name %> </li>
 
 	<li> Description: <%= user.tasks[i].description %> </li>
-
+	<% if (usertrue) { %>
 	<form action="/me/<%= user.name%>/delete_post" method="POST">
+		<input type="hidden" name = "task" value = "<%= user.tasks[i].name %>">
+		<input type="hidden" name = "posted_in" value = "<%= user.tasks[i].posted_in %>">
 		<input type="hidden" name="_method" value="DELETE">
 		<button id="delete-button">Done!</button>
 	</form>
+	<% } %>
 
 	<% } %>
 
@@ -60,6 +63,7 @@
 		<button id="delete-button">Delete My Account!</button>
 	</form>
 	<% } %>
+</div>
 
 </body>
 </html>

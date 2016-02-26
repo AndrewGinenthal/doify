@@ -3,6 +3,13 @@
 	<title>Edit Task</title>
 </head>
 <body>
+
+		<div id = "header"><a href="/channels"><img src="/images/ant.png" height="100" width ="100"></a><h1>Doify: You are not currently on reddit.</h1>
+	<% if (login) { %>
+	<a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
+	<% } %>
+
+	</div>
 	<h1>Edit task details</h1>
 	
 		<form action ='/channels/<%= channel.name %>/<%= task._id %>/edit' method = 'POST'>

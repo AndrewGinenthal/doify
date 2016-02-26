@@ -33,7 +33,7 @@ app.use(expressSession({ name: 'whut', secret: 'conventional wisdom', saveUninit
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+// adds {login: true} to res.locals object
 app.use(function(req, res, next) {
   res.locals.login = req.isAuthenticated();
   next();
@@ -57,7 +57,7 @@ app.get('/', function(req, res){
 })
 
 
-// CONNECTION
+// CONNECTION (with heroku mongolab provision)
 var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/doify'
 mongoose.connect(mongoUri)
 

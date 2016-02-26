@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var userSchema = require('./usermodels.js').schema
+var commentSchema = require('./commentmodels.js').schema
 
 
 var tasksSchema = mongoose.Schema({
@@ -8,7 +9,8 @@ var tasksSchema = mongoose.Schema({
 
 	description: String,
 	posted_in: String,
-	posted_by: String //Why couldn't I use the userSchema here?
+	posted_by: String, //Why couldn't I use the userSchema here? It gave me a problem.
+	comments: [commentSchema]
 })
 
 var Task = mongoose.model('Task', tasksSchema)

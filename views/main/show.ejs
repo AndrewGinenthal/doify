@@ -5,18 +5,26 @@
 
 </head>
 <body>
-
-	<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
+	
+	<div id = "header"><a href="/channels"><img src="/images/ant.png" height="100" width ="100"></a><h1>Doify: You are not currently on reddit.</h1>
 	<% if (login) { %>
 	<a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
 	<% } %>
-
+	</div>
+	<div id = "side_inputs">
+	<div id = "create_chan"><p>Make a new Doify Channel</p>
+	<form action ='/channels' method = 'POST'>
+		<input type = 'text' name = 'name' placeholder ='new channel name'><br><br>
+		<textarea rows = '4' cols ='50' name = 'description'>what should this channel be about?</textarea> <br><br>
+		<input type = 'submit'>
+	</form>
+	</div>
 	</div>
 
-<a href="/channels">Back to Doify</a>
-
+<div id = "main_view">
 <h1><%= channel.name %></h1>
-<h3><%= channel.description %></h3>
+<h2><%= channel.description %></h2>
+
 
 <h3>Today's Posts</h3>
 
@@ -36,6 +44,7 @@
 		<input type="hidden" name="posted_in" value="<%= channel.name %>">
 		<input type = 'submit'>
 	</form>
+</div>
 
 </body>
 </html>

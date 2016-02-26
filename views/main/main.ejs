@@ -6,7 +6,7 @@
 <body>
 
 	
-	<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
+	<div id = "header"><a href="/channels"><img src="/images/ant.png" height="100" width ="100"></a><h1>Doify: You are not currently on reddit.</h1>
 	<% if (login) { %>
 	<a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
 	<% } %>
@@ -18,11 +18,13 @@
 	<div id = "login"><p>MEMBER LOGIN</p>
 	<form action ='/me/login' method = 'POST'>
 		<input type = 'text' name = 'email' placeholder ='email'><br><br>
-		<input type = 'text' name = 'password' placeholder ='password'><br><br>
+		<input type = 'password' name = 'password' placeholder ='password'><br><br>
 		<input type = 'submit'>
 	</form>
 	</div>
 		<% } %>
+
+		
 	<div id = "create_chan"><p>Make a new Doify Channel</p>
 	<form action ='/channels' method = 'POST'>
 		<input type = 'text' name = 'name' placeholder ='new channel name'><br><br>
@@ -31,12 +33,14 @@
 	</form>
 	</div>
 	</div>
-	<h3>Main Channels: Pick an area of productivity</h3>
+	<div id = "main_view">
+	<h2>Main Channels: Pick an area of productivity</h2>
 	<% for (var i = 0; i < channel.length; i++){ %>
 	<a href="channels/<%=channel[i].name%>/"> <li><%= channel[i].name %> </li> </a>
+	<li id = "description"><%= channel[i].description %></li><br><br>
 	<% } %>
 
 	<% if (!login) { %> <a href="/me/signup"><h3>Become a member and start doify'ing today!</h3></a> <% } %>
-
+	</div>
 </body>
 </html>

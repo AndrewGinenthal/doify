@@ -1,9 +1,19 @@
 <html>
 <head>
 	<title>Become a member</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 
+		<div id = "header"><a href="/channels"><img src="/images/ant.png" height="100" width ="100"></a><h1>Doify: You are not currently on reddit.</h1>
+	<% if (login) { %>
+	<a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
+	<% } %>
+
+	</div>
+
+
+	<div id = "main_view">
 	<h1>New User Signup</h1>
 	<p>Congrats on your first step on the journey toward personal productivity through community shaming. Fill out the form to activate your personal Doify tasks hub.</p>
 
@@ -13,6 +23,7 @@
 	Password: <input type = 'text' name = 'password'><br><br>
 		<input type = 'submit'>
 	</form>
+	</div>
 
 </body>
 </html>

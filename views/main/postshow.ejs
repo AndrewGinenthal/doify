@@ -2,12 +2,16 @@
 <head>
 	<title><%= task.name %> </title>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script type="text/javascript" src = "/js/scripts.js"></script>
 
 </head>
 <body>
 
-	<div id = "header"><img src="/images/ant.png" height="100" width ="100"><h1>Doify: You are not currently on reddit.</h1>
-	<% if (login) { %> <a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a> <% } %>
+	<div id = "header"><a href="/channels"><img src="/images/ant.png" height="100" width ="100"></a><h1>Doify: You are not currently on reddit.</h1>
+	<% if (login) { %>
+	<a id = "my_home" href="/me/<%= user.name %>"><%= user.name %>'s Doify</a>
+	<% } %>
+
 	</div>
 
 	<a href="/channels/<%= channel.name %>">Back to main <%= channel.name %> channel</a>
@@ -28,7 +32,7 @@
 		<input type = 'submit'>
 	</form>
 	</div>
-	</div>
+	</div><br>
 
 	<H1><%= task.name %> </H1><br>
 	<p>Posted by: <a href="/me/<%= task.posted_by %>"><%= task.posted_by %></a></p>
@@ -38,14 +42,37 @@
 	<p>Task Location: <%= task.location %> </p> <br><br> -->
 
 	<p> <%= task.description %> </p>
-
+	<% if(usertrue) { %>
 	<a href="/channels/<%= channel.name%>/<%= task._id %>/edit">Edit Task Details</a>
 
 	<form action="/channels/<%= channel.name%>/<%= task.name %>" method="POST">
 		<input type="hidden" name="_method" value="DELETE">
 		<button id="delete-button">Delete Task</button>
 	</form>
-
+	<% } %>
+	<hr>
+	<div id = "main_view">
+	<p>Commenting as: <%=user.name %></p>
+	<form action = "/channels/<%= channel.name%>/<%= task._id %>/comment" method="POST">
+	<input type = "hidden" name = "commenter" value = '<%= user.name %>' >
+	<textarea rows = '4' cols ='50' name = 'comment' placeholder = "A nice constructive comment on <%=task.posted_by %>'s task"></textarea><br>
+	<input type = "submit" value = "comment">
+	</form>
+	
+	<% for(var i = 0; i<task.comments.length; i++) { %>
+	<div id = "comments">
+		<ul>
+		<li id = "commenter_says"><a href="/me/<%= task.comments[i].commenter %>"><%= task.comments[i].commenter%></a> says:</li>
+		<ul>
+		<li id = "comment_body"><%= task.comments[i].comment %></li>
+		<li id = "reply_button"><button>reply</button></li>
+		<li id = "reply_here"></li>
+		</ul>
+		</ul>
+		</div>		
+	<% } %>
+</div>
+	
 
 
 
